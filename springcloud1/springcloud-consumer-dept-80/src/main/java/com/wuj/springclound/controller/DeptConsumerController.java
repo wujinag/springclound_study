@@ -2,6 +2,7 @@ package com.wuj.springclound.controller;
 
 import com.wuj.pojo.Dept;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class DeptConsumerController {
     @Autowired
     private RestTemplate restTemplate;//提供多种便捷访问http服务的方法，简单的Restful服务模板
 
-    private static final String REST_URL_PERFiX ="http://localhost:8001/dept-provider";
+    private static final String REST_URL_PERFiX ="http://SPRINGCLOUD-PROVIDER-DEPT/dept-provider";
 
     @RequestMapping("/consumer/dept/get/{id}")
     public Dept get(@PathVariable("id") Long id){

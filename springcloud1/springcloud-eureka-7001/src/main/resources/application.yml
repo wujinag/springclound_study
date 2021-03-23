@@ -1,0 +1,21 @@
+server:
+  port: 7001
+
+#eureka 配置
+eureka:
+  instance:
+    hostname: eureka7001.com
+  client:
+    register-with-eureka: false #表示是否向注册中心组测自己
+    fetch-registry: false #fasle表示自己为注册中心
+    service-url: #监控页面
+#      单机
+#      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+#      集群模式:彼此相互注册即可，但不注册自身
+      defaultZone: http://eureka7002.com:7002/eureka/,http://eureka7003.com:7003/eureka/
+
+
+#默认不设置代表好死不如赖活着，eureka不会主动注销当前服务，当服务不可用时候，自我保护机制是一种应对网络异常
+#异常的安全保护机制，架构设计在于宁可同时保留所有微服务(健康的和不健康的微服务)，也不盲目注销任何健康的服务，使用自我保护机制可以让eureka集群更加健壮和稳定
+  server:
+    enable-self-preservation: true #  false禁用自我保护机制
