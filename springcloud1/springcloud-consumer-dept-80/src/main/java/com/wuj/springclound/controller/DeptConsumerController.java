@@ -2,6 +2,7 @@ package com.wuj.springclound.controller;
 
 import com.wuj.pojo.Dept;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,6 +15,10 @@ import java.util.List;
 
 @RestController
 public class DeptConsumerController {
+
+    @Autowired
+    private DiscoveryClient discoveryClient;
+
     //消费者，不应该有service层
     //ResTemplate直接注入spring 调用即可
     @Autowired
@@ -23,6 +28,7 @@ public class DeptConsumerController {
 
     @RequestMapping("/consumer/dept/get/{id}")
     public Dept get(@PathVariable("id") Long id){
+        System.out.println("current service = " + discoveryClient.getServices());
         return restTemplate.getForObject(REST_URL_PERFiX+"/dept/get/"+id,Dept.class);
     }
 

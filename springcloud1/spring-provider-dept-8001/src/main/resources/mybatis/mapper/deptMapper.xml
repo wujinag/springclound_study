@@ -11,7 +11,7 @@
     </insert>
 
     <select id="queyAll" resultType="dept">
-        select t.dept_no as deptNo,t.dept_name as deptName,t.dept_no as dataSource  from dept t
+        select t.dept_no as deptNo,t.dept_name as deptName,t.data_source as dataSource  from dept t
 	</select>
 
    <delete id="deleteDept" parameterType="Long">
@@ -19,7 +19,7 @@
    </delete>
 
     <select id="queyDept" parameterType="Long" resultType="dept">
-        select t.dept_no as deptNo,t.dept_name as deptName,t.dept_no as dataSource  from dept t where t.dept_no =#{deptNo}
+        select t.dept_no as deptNo,t.dept_name as deptName,t.data_source as dataSource  from dept t where t.dept_no =#{deptNo}
     </select>
 
 

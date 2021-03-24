@@ -7,8 +7,14 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration//sping de application.xml
 public class ConfigBean {
+    //Irule 负载均衡算法 多个实现算法类 AbstractLoadBalancerRule  RoundRobinRule（轮询） 等等
+    // 随机 (Random)
+    //轮询 (RoundRobin)
+    //一致性哈希 (ConsistentHash)
+    //哈希 (Hash)
+    //加权（Weighted）
     @Bean
-    @LoadBalanced//实现负载均衡的注解
+    @LoadBalanced//ribbon 实现负载均衡
     public RestTemplate getRestTemplate(){
         return  new RestTemplate();
     }
